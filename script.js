@@ -1,48 +1,16 @@
-let ask = prompt("tell me your id : -")
-
-function getuser(id,cb){
-    console.log("user fetching")
+let pr = new Promise((resolve, reject) => {
+    console.log("Checking flow of promises...")
     setTimeout(() => {
-        if(id == 100) {
-            console.log("User Found !!")
-            cb({id:100,
-            username: "Kartik",
-            password: "******"
-        },{
-            id:100,
-            username: "Aartik",
-            password: "******"
-        },
-        {
-            id:100,
-            username: "amartik",
-            password: "******"
-    })
-    }else 
-            console.log("NO user Found")
-    }, 2000);
-}
-function getposts(username,cb){
-    console.log("details fetching...")
-    setTimeout(() => {
-        if (username === "Kartik"){
-            console.log("username matched Post as follows :")
-            cb({
-                "post1":1234,
-                "post2":5678,
-                "post2":9876,
-                "post4":5432,
-                "post5":1111
-            })
-        }else{
-            console.log("invalid detail");
-        }
-    }, 2000);
-}
+        let rn = Math.floor(Math.random()*10)
+        if (rn>=5) resolve("Resolve with "+rn)
+            else reject("Rejected with "+rn)
+    }, 3000);
+})
 
-let fun = getuser(ask,function(data){
-    console.log(data)
-    getposts(data.username,function(posts){
-        console.log(posts)
-    })
+pr
+.then(function(val){
+    console.log(val);
+})
+.catch(function(val){
+    console.log(val);
 })
