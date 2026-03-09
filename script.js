@@ -1,5 +1,5 @@
 let pr = new Promise((resolve, reject) => {
-    console.log("Checking flow of promises...")
+    console.log("Checking flow of async await...")
     setTimeout(() => {
         let rn = Math.floor(Math.random()*10)
         if (rn>=5) resolve("Resolve with "+rn)
@@ -7,10 +7,13 @@ let pr = new Promise((resolve, reject) => {
     }, 3000);
 })
 
-pr
-.then(function(val){
-    console.log(val);
-})
-.catch(function(val){
-    console.log(val);
-})
+async function abcd(){
+    try{
+        let val = await pr;
+        console.log(val)
+    }catch(err){
+        console.log(err)
+    }
+}
+
+abcd();
