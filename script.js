@@ -1,42 +1,48 @@
-function getUser(id,cb){
-    console.log("User fetching....")
-    setTimeout(()=>{
-        cb({id:id,
-        username:"kartik",
-        bio:"Developer"
+let ask = prompt("tell me your id : -")
+
+function getuser(id,cb){
+    console.log("user fetching")
+    setTimeout(() => {
+        if(id == 100) {
+            console.log("User Found !!")
+            cb({id:100,
+            username: "Kartik",
+            password: "******"
+        },{
+            id:100,
+            username: "Aartik",
+            password: "******"
+        },
+        {
+            id:100,
+            username: "amartik",
+            password: "******"
     })
-    },3000)
+    }else 
+            console.log("NO user Found")
+    }, 2000);
 }
-function getorder(id,cb){
-    console.log("Your order is coming...")
-    setTimeout(()=>{
-        cb({id:id,
-            order : ['a','b','c','d']
-        })
-    },2000)
-}
-function getmoney(id,cb){
-    setTimeout(()=>{
-        cb({id:id,
-            otp: "abcde"
-        })
-    },2000)
+function getposts(username,cb){
+    console.log("details fetching...")
+    setTimeout(() => {
+        if (username === "Kartik"){
+            console.log("username matched Post as follows :")
+            cb({
+                "post1":1234,
+                "post2":5678,
+                "post2":9876,
+                "post4":5432,
+                "post5":1111
+            })
+        }else{
+            console.log("invalid detail");
+        }
+    }, 2000);
 }
 
-getUser(123,function(data){
+let fun = getuser(ask,function(data){
     console.log(data)
-
-    getorder(123,function(order){
-        console.log(order)
-
-        getmoney(123,function(money){
-            console.log("Please verify your otp...")
-            setTimeout(()=>{
-                let input=prompt("give me a captcha");
-
-                if(money.otp==input)console.log("verified please pay")
-                else console.log("its fake")
-            },2000);
-        })
+    getposts(data.username,function(posts){
+        console.log(posts)
     })
 })
